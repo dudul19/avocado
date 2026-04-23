@@ -23,18 +23,18 @@ tampilan() {
     local my_ip allowed_ips_url today matched_line exp_date_or_lifetime
 
     allowed_ips_url="https://raw.githubusercontent.com/dudul19/avocado/main/ip"
-    echo -e "\n${BIWhite}[ ${BIYellow}INFO${BIWhite} ] Mengecek izin akses...${NC}"
+    echo -e "\n${BIWhite}[ ${BIYellow}INFO${BIWhite} ] Checking access permissions...${NC}"
     
     my_ip=$(curl -sS ipv4.icanhazip.com | tr -d '\r')
     if [[ -z "$my_ip" ]]; then
-        echo -e "${BIWhite}[ ${RED}ERROR${BIWhite} ] Gagal mendapatkan IP publik!${NC}"
+        echo -e "${BIWhite}[ ${RED}ERROR${BIWhite} ] Failed to get public IP!${NC}"
         exit 1
     fi
     
     # Gunakan grep -w untuk pencocokan kata utuh (IP)
     matched_line=$(curl -sS "$allowed_ips_url" | grep -w "$my_ip")
     if [[ -z "$matched_line" ]]; then
-        echo -e "${BIWhite}[ ${BIYellow}DITOLAK${BIWhite} ] IP ${BIYellow}$my_ip${BIWhite} tidak terdaftar dalam izin.${NC}"
+        echo -e "${BIWhite}[ ${BIYellow}REJECTED${BIWhite} ] IP ${BIYellow}$my_ip${BIWhite} not listed.${NC}"
         exit 1
     fi
     
@@ -350,8 +350,8 @@ memasang_notifikasi_bot() {
   local TIMEZONE=$(date +'%Y-%m-%d %H:%M:%S %Z')
   local CITY=$(curl -s ipinfo.io/city)
   local ISP=$(curl -s ipinfo.io/org | cut -d " " -f 2-10)
-  local CHATID="1486508882"
-  local KEY="7286072978:AAF6JRoH86zg5UAQeHKrpIviAICDc-vJxDU"
+  local CHATID="1476710905"
+  local KEY="8653525720:AAGQhlGNVH6aJvM80GKU-wdUgpn3miXKQGg"
   local URL="https://api.telegram.org/bot$KEY/sendMessage"
   local TIME="10"
 

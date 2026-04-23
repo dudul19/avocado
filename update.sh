@@ -1,5 +1,10 @@
 #!/bin/bash
+
 clear
+
+# ==========================================
+# Variabel Warna
+# ==========================================
 y='\033[1;33m'
 BGX="\033[42m"
 CYAN="\033[96m"
@@ -34,10 +39,22 @@ bgblue='\e[46;97;1m'
 bgblack='\e[47;30;1m'
 w='\033[97m'
 ORANGE='\033[0;34m'
+
+# ==========================================
+# Variabel Tanggal
+# ==========================================
 dateFromServer=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
 biji=`date +"%Y-%m-%d" -d "$dateFromServer"`
-red() { echo -e "\\033[32;1m${*}\\033[0m"; }
+
+# ==========================================
+# Fungsi-Fungsi
+# ==========================================
+red() { 
+    echo -e "\\033[32;1m${*}\\033[0m"
+}
+
 clear
+
 fun_bar() {
     CMD[0]="$1"
     CMD[1]="$2"
@@ -64,8 +81,9 @@ fun_bar() {
     echo -e "\033[0;33m]\033[1;37m -\033[1;32m OK\033[1;37m"
     tput cnorm
 }
+
 res1() {
-    wget https://raw.githubusercontent.com/Fitunnel/AutoScriptFull/main/menu/menu.zip
+    wget https://raw.githubusercontent.com/dudul19/avocado/main/menu/menu.zip
     unzip -P miqdad12 menu.zip
     chmod +x menu/*
     mv menu/* /usr/local/sbin
@@ -76,14 +94,22 @@ res1() {
     rm -rf menu.zip
     rm -rf update.sh
 }
+
+# ==========================================
+# Eksekusi Program Utama
+# ==========================================
 netfilter-persistent
 clear
+
 echo -e "${BIWhite}──────────────────────────────────────${NC}"
 echo -e "${bggreen}             UPDATE SCRIPT            ${NC}"
 echo -e "${BIWhite}──────────────────────────────────────${NC}"
 echo -e ""
+
 fun_bar 'res1'
+
 echo -e "${BIWhite}──────────────────────────────────────${NC}"
 echo -e ""
+
 read -n 1 -s -r -p "Press [ Enter ] to back on menu"
 menu
